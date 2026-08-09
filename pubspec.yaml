@@ -8,44 +8,37 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.17.1 <3.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
 
-  # github
-  github: ^9.2.0
-
   # web related
-  flutter_html: any
-  url_strategy: ^0.2.0
-  universal_html: ^2.0.4
-
-  # http
-  http: ^0.13.1
+  flutter_web_plugins:
+    sdk: flutter
+  universal_html: ^2.2.4
 
   # utils
-  mailto: ^2.0.0
-  flip_card: ^0.6.0
-  url_launcher: ^6.1.2
-  cupertino_icons: ^1.0.2
-  carousel_slider: ^4.0.0
-  animated_text_kit: ^4.2.1
-  font_awesome_flutter: ^10.1.0
+  flip_card: ^0.7.0
+  url_launcher: ^6.3.1
+  cupertino_icons: ^1.0.8
+  carousel_slider: ^5.1.1
+  animated_text_kit: ^4.2.3
+  font_awesome_flutter: ^10.8.0
 
   # state management
-  provider: ^6.0.1
+  provider: ^6.1.2
 
   # cache
-  shared_preferences: ^2.0.6
+  shared_preferences: ^2.3.3
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^2.0.0
+  flutter_lints: ^5.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

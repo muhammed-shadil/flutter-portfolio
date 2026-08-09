@@ -10,10 +10,16 @@ final themeLight = ThemeData(
   canvasColor: Colors.white,
   fontFamily: fontFamily,
   splashColor: Colors.transparent,
-  scaffoldBackgroundColor: Colors.white, colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.red).copyWith(
-    secondary: Colors.black,
+  scaffoldBackgroundColor: Colors.white,
+  // `brightness` must be passed to fromSwatch itself: setting it afterwards via
+  // copyWith only flips the flag and leaves onSurface (the source of default
+  // text colour under Material 3 typography) at its light-mode value.
+  colorScheme: ColorScheme.fromSwatch(
+    primarySwatch: Colors.red,
     brightness: Brightness.light,
-  ).copyWith(background: Colors.white),
+  ).copyWith(
+    secondary: Colors.black,
+  ),
 );
 
 final themeDark = ThemeData(
@@ -21,11 +27,14 @@ final themeDark = ThemeData(
   primaryColorDark: const Color(0xffC0392B),
   primaryColor: const Color(0xffC0392B),
   highlightColor: const Color(0xffC0392B),
-  canvasColor: Colors.white,
+  canvasColor: Colors.grey[900],
   fontFamily: fontFamily,
   splashColor: Colors.transparent,
-  scaffoldBackgroundColor: Colors.black, colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.red).copyWith(
-    secondary: const Color(0xffC0392B),
+  scaffoldBackgroundColor: Colors.black,
+  colorScheme: ColorScheme.fromSwatch(
+    primarySwatch: Colors.red,
     brightness: Brightness.dark,
-  ).copyWith(background: Colors.grey[800]),
+  ).copyWith(
+    secondary: const Color(0xffC0392B),
+  ),
 );
