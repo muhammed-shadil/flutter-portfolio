@@ -78,7 +78,9 @@ class AboutTab extends StatelessWidget {
               color: AppTheme.c!.primary,
             ),
           ),
-          Row(
+          Wrap(
+            spacing: AppDimensions.normalize(3),
+            runSpacing: AppDimensions.normalize(3),
             children: kTools
                 .map(
                   (e) => ToolTechWidget(techName: e),
@@ -98,11 +100,11 @@ class AboutTab extends StatelessWidget {
                 children: [
                   AboutMeData(
                     data: "Name",
-                    information: "Muhammed Shadil k",
+                    information: "Muhammed Shadil",
                   ),
                   AboutMeData(
-                    data: "Age",
-                    information: "24",
+                    data: "Experience",
+                    information: "2.5+ years",
                   ),
                 ],
               ),

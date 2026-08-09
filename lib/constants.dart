@@ -9,5 +9,14 @@ void openURL(String url) => launchUrl(
 final kTools = [
   "Flutter",
   "Dart",
-  
+  "BLoC",
+  "GetX",
+  "Provider",
+  "Firebase",
+  "REST API",
+  "Node.js",
+  "Hive",
+  "SQFlite",
+  "Git",
+  "Figma",
 ];

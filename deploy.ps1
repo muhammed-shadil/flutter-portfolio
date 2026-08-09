@@ -30,7 +30,12 @@ param(
     [switch]$DryRun
 )
 
-$ErrorActionPreference = 'Stop'
+# NOTE: deliberately not 'Stop'. In Windows PowerShell 5.1 anything a native exe
+# writes to stderr becomes a NativeCommandError, and with 'Stop' that aborts the
+# script - flutter's harmless "Wasm dry run findings" notice would kill the deploy.
+# Native commands are checked explicitly via $LASTEXITCODE instead; cmdlets that
+# must not fail silently carry their own -ErrorAction Stop.
+$ErrorActionPreference = 'Continue'
 
 # ---------------------------------------------------------------- configuration
 $HostingRepo = 'https://github.com/muhammed-shadil/Shadil-Portfolio.git'
@@ -80,18 +85,23 @@ if ($indexHtml -notmatch [regex]::Escape("<base href=""$BaseHref"">")) {
 
 # ---------------------------------------------------------------- 2. get hosting repo
 Write-Step 'Fetching hosting repo'
-if (Test-Path $CloneDir) { Remove-Item $CloneDir -Recurse -Force }
+if (Test-Path $CloneDir) { Remove-Item $CloneDir -Recurse -Force -ErrorAction Stop }
 git clone --quiet --depth 1 --branch $Branch $HostingRepo $CloneDir
 if ($LASTEXITCODE -ne 0) { Fail 'git clone failed.' }
+if (-not (Test-Path (Join-Path $CloneDir '.git'))) { Fail 'Clone produced no .git directory.' }
 
 # ---------------------------------------------------------------- 3. swap contents
 Write-Step 'Replacing site contents with the new build'
 Get-ChildItem -Path $CloneDir -Force |
     Where-Object { $_.Name -ne '.git' } |
-    Remove-Item -Recurse -Force
+    Remove-Item -Recurse -Force -ErrorAction Stop
 
 Get-ChildItem -Path $BuildDir -Force |
-    Copy-Item -Destination $CloneDir -Recurse -Force
+    Copy-Item -Destination $CloneDir -Recurse -Force -ErrorAction Stop
+
+if (-not (Test-Path (Join-Path $CloneDir 'index.html'))) {
+    Fail 'Copy did not produce an index.html in the clone.'
+}
 
 # ---------------------------------------------------------------- 4. publish
 git -C $CloneDir add -A

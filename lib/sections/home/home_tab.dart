@@ -92,7 +92,7 @@ class HomeTab extends StatelessWidget {
                       AnimatedTextKit(
                         animatedTexts: [
                           TyperAnimatedText(
-                            ' Flutter Developer',
+                            ' Senior Flutter Developer',
                             speed: const Duration(milliseconds: 50),
                             textStyle: AppText.b1,
                           ),

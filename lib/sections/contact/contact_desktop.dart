@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:folio/animations/bottom_animation.dart';
 import 'package:folio/configs/configs.dart';
 import 'package:folio/utils/contact_utils.dart';
+import 'package:folio/widget/contact_card.dart';
 import 'package:folio/widget/custom_text_heading.dart';
-import 'package:folio/widget/project_card.dart';
 
 class ContactDesktop extends StatelessWidget {
   const ContactDesktop({Key? key}) : super(key: key);
@@ -28,11 +28,11 @@ class ContactDesktop extends StatelessWidget {
                   .asMap()
                   .entries
                   .map((e) => WidgetAnimator(
-                        child: ProjectCard(
-                          projectLink:ContactUtils.link[e.key] ,
-                          projectIconData: e.value,
-                          projectTitle: ContactUtils.titles[e.key],
-                          projectDescription: ContactUtils.details[e.key],
+                        child: ContactCard(
+                          icon: e.value,
+                          title: ContactUtils.titles[e.key],
+                          detail: ContactUtils.details[e.key],
+                          link: ContactUtils.link[e.key],
                         ),
                       ))
                   .toList()),

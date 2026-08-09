@@ -12,28 +12,24 @@ class PortfolioMobileTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
     return Column(
       children: [
         const CustomSectionHeading(
           text: "\nPortfolio",
         ),
         const CustomSectionSubHeading(
-          text: "Here are few samples of my previous work :)\n\n",
+          text: "Apps I have designed, built and shipped :)\n\n",
         ),
         CarouselSlider.builder(
-          itemCount: ProjectUtils.titles.length,
+          itemCount: ProjectUtils.projects.length,
           itemBuilder: (BuildContext context, int itemIndex, int i) => Padding(
             padding: const EdgeInsets.symmetric(vertical: 15.0),
             child: ProjectCard(
-              projectIcon: ProjectUtils.icons[i],
-              projectLink: ProjectUtils.links[i],
-              projectTitle: ProjectUtils.titles[i],
-              projectDescription: ProjectUtils.description[i],
+              project: ProjectUtils.projects[itemIndex],
             ),
           ),
           options: CarouselOptions(
-            height: height * 0.4,
+            height: AppDimensions.normalize(140),
             autoPlay: true,
             autoPlayInterval: const Duration(seconds: 5),
             enlargeCenterPage: true,

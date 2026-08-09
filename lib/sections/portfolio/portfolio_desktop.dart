@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:folio/animations/entrance_fader.dart';
 import 'package:folio/configs/configs.dart';
 import 'package:folio/constants.dart';
 import 'package:folio/utils/project_utils.dart';
@@ -24,22 +25,21 @@ class _PortfolioDesktopState extends State<PortfolioDesktop> {
             text: "\nPortfolio",
           ),
           const CustomSectionSubHeading(
-            text: "Here are few samples of my previous work :)\n\n",
+            text: "Apps I have designed, built and shipped :)\n\n",
           ),
           Wrap(
             alignment: WrapAlignment.center,
             crossAxisAlignment: WrapCrossAlignment.center,
             runSpacing: AppDimensions.normalize(10),
-            children: ProjectUtils.banners
+            children: ProjectUtils.projects
                 .asMap()
                 .entries
                 .map(
-                  (e) => ProjectCard(
-                    banner: e.value,
-                    projectIcon: ProjectUtils.icons[e.key],
-                    projectLink: ProjectUtils.links[e.key],
-                    projectTitle: ProjectUtils.titles[e.key],
-                    projectDescription: ProjectUtils.description[e.key],
+                  (e) => EntranceFader(
+                    offset: const Offset(0, 22),
+                    delay: Duration(milliseconds: 90 * e.key),
+                    duration: const Duration(milliseconds: 450),
+                    child: ProjectCard(project: e.value),
                   ),
                 )
                 .toList(),

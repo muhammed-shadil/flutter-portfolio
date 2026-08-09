@@ -2,8 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:folio/configs/app_dimensions.dart';
 import 'package:folio/utils/contact_utils.dart';
+import 'package:folio/widget/contact_card.dart';
 import 'package:folio/widget/custom_text_heading.dart';
-import 'package:folio/widget/project_card.dart';
 
 class ContactMobileTab extends StatelessWidget {
   const ContactMobileTab({Key? key}) : super(key: key);
@@ -22,10 +22,11 @@ class ContactMobileTab extends StatelessWidget {
           itemCount: 3,
           itemBuilder: (BuildContext context, int itemIndex, int i) => Padding(
             padding: const EdgeInsets.symmetric(vertical: 10.0),
-            child: ProjectCard(
-              projectIconData: ContactUtils.contactIcon[i],
-              projectTitle: ContactUtils.titles[i],
-              projectDescription: ContactUtils.details[i],
+            child: ContactCard(
+              icon: ContactUtils.contactIcon[i],
+              title: ContactUtils.titles[i],
+              detail: ContactUtils.details[i],
+              link: ContactUtils.link[i],
             ),
           ),
           options: CarouselOptions(
